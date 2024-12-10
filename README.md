@@ -2,7 +2,7 @@
 
 Visualization for collatz sequences based on [Langton's ant](https://en.wikipedia.org/wiki/Langton%27s_ant).
 
-Additionally to what's the [Collatz function](https://en.wikipedia.org/wiki/Collatz_conjecture)($f(n) = n/2$ if $n % 2 = 0$ else $f(n) = 3n + 1$) if $n % 2 = 0$ the ant turns 90º clockwise, else the ant turns 90º counter-clockwise. On both accounts, the state of the cell is flipped and the ant moves forward one unit. This is repeated until $n = 1$.
+Additionally to what's the [Collatz function](https://en.wikipedia.org/wiki/Collatz_conjecture)($f(n) = n/2$ if $n \% 2 = 0$ else $f(n) = 3n + 1$) if $n \% 2 = 0$ the ant turns 90º clockwise, else the ant turns 90º counter-clockwise. On both accounts, the state of the cell is flipped and the ant moves forward one unit. This is repeated until $n = 1$.
 
 ### Some examples
 
