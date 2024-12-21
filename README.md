@@ -15,3 +15,9 @@ Additionally to what's the [Collatz function](https://en.wikipedia.org/wiki/Coll
 ![](examples/collatz_ant4.gif)
 
 ![](examples/collatz_ant5.gif)
+
+Example of consecutive trajectories in a single gif (from $n = 1e10$ to $n = 1e10 + 20$).
+
+![](collatz_ant_grid.gif)
+
+
