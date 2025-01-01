@@ -20,7 +20,7 @@ Example of consecutive trajectories in a single gif (from $n = 10^{30}$ to $n = 
 
 ![](collatz_ant_grid.gif)
 
-Keeping count at each point (not flipping state), for corresponding trajectories.
+Keeping count at each coordinate (not flipping state), for corresponding trajectories.
 
 ![](collatz_ant_grid_attractors.png)
 
