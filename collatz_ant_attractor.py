@@ -6,12 +6,13 @@ import mpmath
 N = 100  # Grid dim
 mpmath.mp.dps = 22
 start = mpmath.mpf("1e20")
-end = start + 20
+end = start + 100
 nums = [start + mpmath.mpf(i) for i in range(int(end - start))]
+#nums = [mpmath.mpf('1496352251612.0'), mpmath.mpf("1e20") + 16]
 #gif
-rows = 5
-cols = 4
-out_file = "collatz_ant_grid_attractors.png"
+rows = 1
+cols = 2
+out_file = "collatz_ant_grid_attractors_test.png"
 S = np.zeros((N, N), dtype = "int")
 
 def collatz_ant(n):
@@ -25,7 +26,7 @@ def collatz_ant(n):
 
     dir_index = 0
     frames = [S.copy()]
-
+    steps = 0
     while n != 1:
         if n % 2 == 0:
             n /= 2
@@ -39,21 +40,22 @@ def collatz_ant(n):
         y = (y + dirs[dir_index][1]) % N
 
         frames.append(S.copy())
-    return frames
+        steps += 1
+    return frames, steps
 
-# frames of all trajectories
-all_frames = [collatz_ant(n) for n in nums]
-
+# frames and counts of all trajectories
+all_frames, step_counts = zip(*[collatz_ant(n) for n in nums])
 
 fig, axes = plt.subplots(rows, cols, figsize=(cols * 2, rows * 2))
 axes = axes.flatten()
 ims = []
 for i, ax in enumerate(axes):
     ax.axis("off")
+    ax.set_title(f"Steps: {step_counts[i]}")
     ims.append(ax.imshow(all_frames[i][-1], cmap="hot", interpolation="nearest"))
 
 
-plt.savefig(out_file)
+plt.savefig(out_file, bbox_inches="tight")
 plt.close(fig)
 
 print(f"Saved: {out_file}")
