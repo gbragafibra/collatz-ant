@@ -52,17 +52,31 @@ if __name__ == "__main__":
     To get an idea of what max euclidean distance
     is reached for a given n in interval ∈ [start, end],
     and the corresponding step/total_step ratio at which
-    such max_dist is first reached
+    such max_dist is first reached.
+    Also keep track of last position reached to see if trajectory
+    returns to the origin
     """
-    mpmath.mp.dps = 152
-    start = mpmath.mpf("1e150")
-    #start = 2
-    end = start + 1000
+    mpmath.mp.dps = 192
+    #start = mpmath.mpf("1e190")
+    start = 1e6
+    end = start + 100000
     nums = [start + mpmath.mpf(i) for i in range(int(end - start))]
     dists = [collatz_ant(num) for num in nums]
-    maxs = [max(dist) for dist in dists]
-    plt.plot(np.arange(len(nums)), maxs, "k.")
-    plt.ylabel("Max distance")
-    #max_step_ratio = [np.argmax(dist)/len(dist) for dist in dists] #step at which max dist is first reached
-    #plt.plot(np.arange(len(nums)), max_step_ratio, "k.")
+    op = "max_last"
+    if op == "max_dist":
+        maxs = [max(dist) for dist in dists]
+        plt.plot(np.arange(len(nums)), maxs, "k.")
+        plt.ylabel("Max distance")
+    
+    elif op == "max_step_ratio":
+        max_step_ratio = [np.argmax(dist)/len(dist) for dist in dists] #step at which max dist is first reached
+        plt.plot(np.arange(len(nums)), max_step_ratio, "k.")
+    
+    elif op == "last_pos":
+        last_idx = [dist[-1] for dist in dists]
+        plt.plot(np.arange(len(nums)), last_idx, "k.")
+    elif op == "max_last":
+        max_last = [dist[-1]/max(dist) for dist in dists]
+        plt.plot(np.arange(len(nums)), max_last, "k.")
+
     plt.show()
