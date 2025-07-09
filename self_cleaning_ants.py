@@ -8,7 +8,7 @@ at the end of the landscape.
 Thus "self-cleaning" ants.
 """
 
-N = 150 #Grid dim ; needs to be at least double of α (max_dist)
+N = 175 #Grid dim ; needs to be at least double of α (max_dist)
 #if bigger ns needed
 #mpmath.mp.dps = 101
 #n = mpmath.mpf("1e100")
@@ -39,7 +39,7 @@ def collatz_ant(n, *args):
 		dists.append(np.sqrt((x - N//2)**2 + (y- N//2)**2))
 
 		frames.append(S.copy())
-	steps = len(frames)
+	steps = len(frames) - 1
 	max_dist = max(dists)
 	return frames[-1], steps, dists[-1], max_dist
 
@@ -69,8 +69,8 @@ def check_self_cleaning_ants(n_i, n_f):
 	return ns, τs
 
 if __name__ == "__main__":
-	n_i = 2
-	n_f = 1000000
+	n_i = 4000000
+	n_f = n_i + 1000000
 	ns, τs = check_self_cleaning_ants(n_i, n_f)
 	with open("sc_ants.txt", "w") as f:
 		for n, τ in zip(ns, τs):
